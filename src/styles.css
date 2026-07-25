@@ -1,0 +1,387 @@
+:root {
+  --page-bg: #e7e7e7;
+  --panel-bg: #ffffff;
+  --surface: #d9d9d9;
+  --ink: #101010;
+  --ink-soft: #3d3d3d;
+  --button: #202020;
+  --danger: #8c1c1c;
+  --radius: 8px;
+  /* Calendar */
+  --day-hover: #daedff;
+  --day-selected: #2196f3;
+  --day-ink: rgba(0, 0, 0, .87);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--page-bg);
+  color: var(--ink);
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 24px 16px;
+}
+
+#root {
+  width: 100%;
+  max-width: 320px;
+}
+
+.app-shell {
+  display: block;
+  width: 100%;
+  min-height: 640px;
+  background: var(--panel-bg);
+  border-radius: var(--radius);
+  padding: 28px 22px 36px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .12);
+}
+
+/* ---------- header ---------- */
+.app-header {
+  display: grid;
+  grid-template-columns: 32px 1fr 32px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.app-header h1 {
+  grid-column: 2;
+  margin: 0;
+  font-size: 28px;
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: .2px;
+}
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.icon-button:hover {
+  background: rgba(0, 0, 0, .07);
+}
+
+.icon-button:focus-visible,
+.card-action:focus-visible,
+.save-button:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.icon-button svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.icon-button.add svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* ---------- task cards ---------- */
+.task-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 28px 1fr auto auto;
+  align-items: center;
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+}
+
+.card-text {
+  min-width: 0;
+}
+
+.card-title {
+  margin: 0 0 2px;
+  font-size: 14px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.card.is-complete .card-title {
+  text-decoration: line-through;
+  color: var(--ink-soft);
+}
+
+.card-meta {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+.card-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 0px;
+  background: none;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.card-action:hover {
+  background: rgba(0, 0, 0, .09);
+}
+
+.card-action svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.card-action.trash {
+  color: var(--ink-soft);
+}
+
+/* ---------- settings ---------- */
+.field-group {
+  border: 0;
+  margin: 0 0 22px;
+  padding: 0;
+}
+
+.field-group legend,
+.field-label {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.field-label {
+  display: block;
+}
+
+.radio-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 0;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  width: 15px;
+  height: 15px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+}
+
+input[type="radio"]::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  transform: scale(0);
+  background: var(--ink);
+}
+
+input[type="radio"]:checked::after {
+  transform: scale(1);
+}
+
+input[type="radio"]:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* ---------- create / edit form ---------- */
+.form-field {
+  margin-bottom: 18px;
+}
+
+.text-input,
+.date-input {
+  width: 100%;
+  height: 34px;
+  padding: 0 10px;
+  border: 1px solid #adadad;
+  border-radius: 3px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+}
+
+.text-input:focus,
+.date-input:focus {
+  outline: 2px solid var(--ink);
+  outline-offset: 1px;
+}
+
+/* ---------- date picker ----------*/
+.date-field .react-datepicker-wrapper {
+  display: block;
+}
+
+.date-field .date-input {
+  padding: 0 34px 0 10px;
+}
+
+.date-field .react-datepicker__calendar-icon {
+  position: absolute;
+  right: 9px;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.react-datepicker {
+  border: 1px solid #adadad;
+  border-radius: var(--radius);
+  background: var(--panel-bg);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 11px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .16);
+}
+
+.react-datepicker__header {
+  padding-top: 10px;
+  border-bottom: 0;
+  background: var(--panel-bg);
+}
+
+.react-datepicker__current-month {
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.react-datepicker__day-name,
+.react-datepicker__day {
+  width: 22px;
+  line-height: 22px;
+  margin: 1px;
+  border-radius: 50%;
+}
+
+.react-datepicker__day-name {
+  color: var(--ink-soft);
+  font-size: 9px;
+}
+
+.react-datepicker__day--keyboard-selected {
+  background: var(--day-hover);
+  color: var(--day-ink);
+}
+
+.react-datepicker__day:not([aria-disabled='true']):hover {
+  background: var(--day-hover);
+  color: var(--day-ink);
+  border-radius: 50%;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--selected:not([aria-disabled='true']):hover {
+  background: var(--day-selected);
+  color: #fff;
+}
+
+.react-datepicker__day--outside-month {
+  color: #9a9a9a;
+}
+
+.react-datepicker__navigation {
+  top: 8px;
+  width: 22px;
+  height: 22px;
+}
+
+.react-datepicker__navigation-icon::before {
+  border-color: var(--ink-soft);
+  border-width: 2px 2px 0 0;
+  width: 6px;
+  height: 6px;
+}
+
+.save-button {
+  display: block;
+  margin: 30px auto 0;
+  min-width: 74px;
+  padding: 8px 18px;
+  border: 0;
+  border-radius: 3px;
+  background: var(--button);
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  background: #000;
+}
+
+.save-button[disabled] {
+  opacity: .55;
+  cursor: progress;
+}
+
+/* ---------- status messages ---------- */
+.banner {
+  margin-bottom: 14px;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  background: #f6dcdc;
+  color: var(--danger);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.field-error {
+  margin: 6px 0 0;
+  color: var(--danger);
+  font-size: 12px;
+}
+
+.empty-state {
+  margin: 40px 0;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 13px;
+}
