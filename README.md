@@ -23,7 +23,13 @@ Verify the installation with `node -v` (should be `v24.X.X`). Then, verify that 
 Now that `npm` is ready, install the necessary dependencies with `npm ci`. This will pull in `react 19`, `react-dom 19` and `react-datepicker 9` (used to implement the calendar) at runtime, plus `vite`, `typescript 6`, `eslint 10` and `typescript-eslint` for development.
 
 ## Run
-Make sure the API service is already running on port 5190 (this port is hardcoded into `src/api.ts:4`). Then, start the frontend (from a separate terminal than the one running the API service) using
+After verifying, clone the repo and cd into it:
+```bash
+git clone https://github.com/siweisun0118/TinyHomeFrontendFinal.git
+cd TinyHomeFrontendFinal
+```
+
+Make sure the API service is already running on port 5190 (this port is hardcoded into `src/api.ts:4`). Then, from a separate terminal than the one running the API service, start the frontend using
 ```bash
 npm run dev
 ```

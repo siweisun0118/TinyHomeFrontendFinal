@@ -21,7 +21,7 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T | 
       ...options,
     })
   } catch {
-    throw new Error(`Could not reach the API at ${API_BASE}. Is TinyHomeWebAPI running?`)
+    throw new Error(`Could not reach the API at ${API_BASE}. Is TinyHomeWebAPI running on port 5190?`)
   }
 
   if (!response.ok) {

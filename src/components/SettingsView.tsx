@@ -37,10 +37,10 @@ export default function SettingsView({ settings, onSave, onBack }: SettingsViewP
   // Keyed by Settings field, so each setter only accepts that field's union.
   const update =
     <K extends keyof Settings>(key: K) =>
-    (value: Settings[K]) =>
-      setDraft((prev) => ({ ...prev, [key]: value }))
+      (value: Settings[K]) =>
+        setDraft((prev) => ({ ...prev, [key]: value }))
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault()
     onSave(draft)
   }

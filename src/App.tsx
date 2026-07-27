@@ -27,6 +27,14 @@ function loadSettings(): Settings {
   }
 }
 
+function saveSettings(settings: Settings) {
+  try {
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings))
+  } catch {
+    // Storage can be unavailable (private mode, quota). The settings still apply this session.
+  }
+}
+
 export default function App() {
   const [view, setView] = useState<View>('list')
   const [tasks, setTasks] = useState<Task[]>([])
@@ -44,6 +52,7 @@ export default function App() {
 
   // Will trigger the useEffect below since it depends on settings
   const handleSaveSettings = (next: Settings) => {
+    saveSettings(next)
     setSettings(next)
     goTo('list')
   }
